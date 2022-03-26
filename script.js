@@ -1,0 +1,47 @@
+var seconds=document.getElementById('seconds');
+var miliseconds=document.getElementById('miliseconds');
+var start=document.getElementById('start');
+var stop=document.getElementById('stop');
+var reset=document.getElementById('reset');
+
+var sec=0;
+var millisec=0;
+var timeinterval;
+
+const timer=()=>{
+    millisec++;
+    if(millisec<9){
+        miliseconds.innerHTML="0"+millisec;
+    }
+    if(millisec>9){
+        miliseconds.innerHTML=millisec;
+    }
+    if(millisec>99){
+        sec++;
+        seconds.innerHTML="0"+sec;
+        millisec=0;
+        miliseconds.innerHTML="0"+0;
+    }
+    if(sec>9){
+        seconds.innerHTML=sec;
+    }
+
+}
+//start button
+start.addEventListener('click',()=>{
+    timeinterval=setInterval(timer,10);
+})
+
+//stop button
+stop.addEventListener('click',()=>{
+    clearInterval(timeinterval);
+})
+
+//reset button
+reset.addEventListener('click',()=>{
+    clearInterval(timeinterval);
+    sec="00 :";
+    millisec="00"; 
+    seconds.innerHTML=sec;
+    miliseconds.innerHTML=millisec;
+})
